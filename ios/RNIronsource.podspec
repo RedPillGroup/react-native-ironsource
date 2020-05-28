@@ -1,10 +1,10 @@
 
 Pod::Spec.new do |s|
-  s.name         = "RNReactNativeIronsource"
+  s.name         = "RNIronsource"
   s.version      = "1.0.0"
-  s.summary      = "RNReactNativeIronsource"
+  s.summary      = "RNIronsource"
   s.description  = <<-DESC
-                  RNReactNativeIronsource
+                  RNIronsource
                    DESC
   s.homepage     = "https://github.com/RedPillGroup/react-native-ironsource"
   s.license      = "MIT"
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.author             = { "author" => "itagiba@redpill.paris" }
   s.platform     = :ios, "13.0"
   s.source       = { :git => "https://github.com/RedPillGroup/react-native-ironsource", :tag => "master" }
-  s.source_files  = "RNReactNativeIronsource/**/*.{h,m}"
+  s.source_files  = "RNIronsource/**/*.{h,m}"
   s.requires_arc = true
 
   s.dependency "React"

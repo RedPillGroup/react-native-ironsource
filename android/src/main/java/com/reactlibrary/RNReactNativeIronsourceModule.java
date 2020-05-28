@@ -6,17 +6,17 @@ import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.Callback;
 
-public class RNReactNativeIronsourceModule extends ReactContextBaseJavaModule {
+public class RNIronsourceModule extends ReactContextBaseJavaModule {
 
   private final ReactApplicationContext reactContext;
 
-  public RNReactNativeIronsourceModule(ReactApplicationContext reactContext) {
+  public RNIronsourceModule(ReactApplicationContext reactContext) {
     super(reactContext);
     this.reactContext = reactContext;
   }
 
   @Override
   public String getName() {
-    return "RNReactNativeIronsource";
+    return "RNIronsource";
   }
 }

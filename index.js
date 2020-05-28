@@ -1,6 +1,6 @@
 
 import { NativeModules } from 'react-native';
 
-const { RNReactNativeIronsource } = NativeModules;
+const { RNIronsource } = NativeModules;
 
-export default RNReactNativeIronsource;
+export default RNIronsource;

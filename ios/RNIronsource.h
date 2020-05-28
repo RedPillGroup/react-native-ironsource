@@ -7,7 +7,7 @@
 
 #import "IronSource/IronSource.h"
 
-@interface RNReactNativeIronsource : NSObject <RCTBridgeModule>
+@interface RNIronsource : NSObject <RCTBridgeModule>
 
 @end
   

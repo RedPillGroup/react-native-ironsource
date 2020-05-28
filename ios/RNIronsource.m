@@ -1,7 +1,7 @@
 
-#import "RNReactNativeIronsource.h"
+#import "RNIronsource.h"
 
-@implementation RNReactNativeIronsource
+@implementation RNIronsource
 
 - (dispatch_queue_t)methodQueue
 {

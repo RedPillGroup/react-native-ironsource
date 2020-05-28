@@ -10,10 +10,10 @@ import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.uimanager.ViewManager;
 import com.facebook.react.bridge.JavaScriptModule;
-public class RNReactNativeIronsourcePackage implements ReactPackage {
+public class RNIronsourcePackage implements ReactPackage {
     @Override
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
-      return Arrays.<NativeModule>asList(new RNReactNativeIronsourceModule(reactContext));
+      return Arrays.<NativeModule>asList(new RNIronsourceModule(reactContext));
     }
 
     // Deprecated from RN 0.47
