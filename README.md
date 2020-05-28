@@ -1,13 +1,13 @@
 
-# react-native-react-native-ironsource
+# react-native-ironsource
 
 ## Getting started
 
-`$ npm install react-native-react-native-ironsource --save`
+`$ npm install react-native-ironsource --save`
 
 ### Mostly automatic installation
 
-`$ react-native link react-native-react-native-ironsource`
+`$ react-native link react-native-ironsource`
 
 ### Manual installation
 
@@ -15,7 +15,7 @@
 #### iOS
 
 1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
-2. Go to `node_modules` ➜ `react-native-react-native-ironsource` and add `RNReactNativeIronsource.xcodeproj`
+2. Go to `node_modules` ➜ `react-native-ironsource` and add `RNReactNativeIronsource.xcodeproj`
 3. In XCode, in the project navigator, select your project. Add `libRNReactNativeIronsource.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
 4. Run your project (`Cmd+R`)<
 
@@ -26,18 +26,18 @@
   - Add `new RNReactNativeIronsourcePackage()` to the list returned by the `getPackages()` method
 2. Append the following lines to `android/settings.gradle`:
   	```
-  	include ':react-native-react-native-ironsource'
-  	project(':react-native-react-native-ironsource').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-react-native-ironsource/android')
+  	include ':react-native-ironsource'
+  	project(':react-native-ironsource').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-ironsource/android')
   	```
 3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
   	```
-      compile project(':react-native-react-native-ironsource')
+      compile project(':react-native-ironsource')
   	```
 
 #### Windows
 [Read it! :D](https://github.com/ReactWindows/react-native)
 
-1. In Visual Studio add the `RNReactNativeIronsource.sln` in `node_modules/react-native-react-native-ironsource/windows/RNReactNativeIronsource.sln` folder to their solution, reference from their app.
+1. In Visual Studio add the `RNReactNativeIronsource.sln` in `node_modules/react-native-ironsource/windows/RNReactNativeIronsource.sln` folder to their solution, reference from their app.
 2. Open up your `MainPage.cs` app
   - Add `using React.Native.Ironsource.RNReactNativeIronsource;` to the usings at the top of the file
   - Add `new RNReactNativeIronsourcePackage()` to the `List<IReactPackage>` returned by the `Packages` method
@@ -45,7 +45,7 @@
 
 ## Usage
 ```javascript
-import RNReactNativeIronsource from 'react-native-react-native-ironsource';
+import RNReactNativeIronsource from 'react-native-ironsource';
 
 // TODO: What to do with the module?
 RNReactNativeIronsource;
