@@ -1,6 +1,11 @@
+import { NativeModules, NativeEventEmitter } from 'react-native';
 
-import { NativeModules } from 'react-native';
+const { Ironsource } = NativeModules;
 
-const { RNIronsource } = NativeModules;
+// const IronSourceRewardedVideoEventEmitter = new NativeEventEmitter(Ironsource);
 
-export default RNIronsource;
+// const eventHandlers = {
+//   ironSourceRewardedVideoAvailable: new Map(),
+// }
+
+export default Ironsource;
