@@ -4,7 +4,6 @@
 
 @implementation Ironsource
 
-
 RCT_EXPORT_MODULE()
 
 - (dispatch_queue_t)methodQueue
@@ -12,39 +11,37 @@ RCT_EXPORT_MODULE()
     return dispatch_get_main_queue();
 }
 
-RCT_EXPORT_METHOD(sampleMethod:(NSString *)stringArgument numberParameter:(nonnull NSNumber *)numberArgument callback:(RCTResponseSenderBlock)callback)
+RCT_EXPORT_METHOD(setConsent:(BOOL)consent)
 {
-    // TODO: Implement some actually useful functionality
-    callback(@[[NSString stringWithFormat: @"numberArgument: %@ stringArgument: %@", numberArgument, stringArgument]]);
+    [IronSource setConsent:consent];
+    RCTLogInfo(@"[IOS NATIVE IRONSOURCE] set content true");
 }
 
-RCT_EXPORT_METHOD(initIronsourceSDK:(NSString *)appKey rewardedAdUnit:(NSString *)rewardedAdUnit)
+RCT_EXPORT_METHOD(initIronsourceSDK:(NSString *)appKey
+                userId:(NSString *)userId 
+                options:(NSDictionary *)options)
 {
-    [IronSource setConsent:YES];
-    RCTLogInfo(@"[IOS NATIVE IRONSOURCE] set content true");
+    [IronSource setUserId:userId];
+    RCTLogInfo(@"[IOS NATIVE IRONSOURCE] userId set is: %@", userId);
 
     [IronSource initWithAppKey:appKey adUnits:@[IS_REWARDED_VIDEO]];
-    RCTLogInfo(@"[IOS NATIVE IRONSOURCE] init SDK with APP_KEY: %@ and rewardedVideo AdsUnit: %@", appKey, rewardedAdUnit);
+    RCTLogInfo(@"[IOS NATIVE IRONSOURCE] init SDK with APP_KEY: %@o", appKey);
     
-    [ISIntegrationHelper validateIntegration];
-    RCTLogInfo(@"[IOS NATIVE IRONSOURCE] Integration Helper activated");
-
+    BOOL activateIntegrationHelper = [RCTConvert BOOL:options[@"activateIntegrationHelper"]];
+    if (activateIntegrationHelper) {
+        [ISIntegrationHelper validateIntegration];
+        RCTLogInfo(@"[IOS NATIVE IRONSOURCE] Integration Helper activate");
+    }
+    else
+        RCTLogInfo(@"[IOS NATIVE IRONSOURCE] Integration Helper not activate");
 }
 
 RCT_EXPORT_METHOD(showRewardedVideo:(NSString*)placementName)
 {
-    // if ([IronSource hasRewardedVideo]) {
-    //     NSLog(@"showRewardedVideo - video available");
-    //     [self sendEventWithName:kIronSourceRewardedVideoAvailable body:nil];
-        
     dispatch_async(dispatch_get_main_queue(), ^{
         RCTLogInfo(@"[IOS NATIVE IRONSOURCE] Show Rewarded Video Called");
         [IronSource showRewardedVideoWithViewController:RCTPresentedViewController()];
     });
-    // } else {
-    //     NSLog(@"showRewardedVideo - video unavailable");
-    //     [self sendEventWithName:kIronSourceRewardedVideoUnavailable body:nil];
-    // }
 }
 
 RCT_EXPORT_METHOD(isRewardedVideoAvailable:(RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
@@ -60,18 +57,21 @@ RCT_EXPORT_METHOD(isRewardedVideoAvailable:(RCTPromiseResolveBlock)resolve rejec
 
 RCT_EXPORT_METHOD(initializeRewardedVideo)
 {
-    // if (!initialized) {
-        RCTLogInfo(@"[IOS NATIVE IRONSOURCE] Init Rewarded Video");
-
-        [IronSource setRewardedVideoDelegate:self];
-        // initialized = YES;
-    // }
+    RCTLogInfo(@"[IOS NATIVE IRONSOURCE] Init Rewarded Video");
+    [IronSource setRewardedVideoDelegate:self];
 }
 
-// RCT_EXPORT_METHOD(initializeRewardedVideo)
-// {
-//     [IronSource hasRewardedVideo];
-// }
+
+RCT_EXPORT_METHOD(isRewardedVideoPlacementCapped:(NSString*)placementName : (RCTPromiseResolveBlock)resolve reject:(RCTPromiseRejectBlock)reject)
+{
+    @try {
+        resolve(@([IronSource isRewardedVideoCappedForPlacement:@"Placement"]));
+    }
+    @catch (NSException *exception) {
+        RCTLogInfo(@"isRewardedVideoCappedForPlacement, Error, %@", exception.reason);
+        reject(@"isRewardedVideoCappedForPlacement, Error, %@", exception.reason, nil);
+    }
+}
 
 @end
 

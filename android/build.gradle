@@ -66,6 +66,9 @@ repositories {
         // Android JSC is installed from npm
         url "$rootDir/../node_modules/jsc-android/dist"
     }
+    maven {
+        url "https://dl.bintray.com/ironsource-mobile/android-sdk"
+    }
     google()
     jcenter()
 }
@@ -73,6 +76,11 @@ repositories {
 dependencies {
     //noinspection GradleDynamicVersion
     implementation 'com.facebook.react:react-native:+'  // From node_modules
+    implementation 'com.ironsource.sdk:mediationsdk:6.16.2'
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.google.android.gms:play-services-ads-identifier:17.0.0'
+    implementation 'com.google.android.gms:play-services-basement:17.1.1'
 }
 
 def configureReactNativePom(def pom) {
