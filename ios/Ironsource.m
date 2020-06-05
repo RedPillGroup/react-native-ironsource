@@ -1,8 +1,18 @@
 #import "Ironsource.h"
 #import <React/RCTLog.h>
-// #import "RCTUtils.h"
+#import "RCTUtils.h"
 
 @implementation Ironsource
+
+NSString *const kIronSourceRewardedVideoAvailable = @"ironSourceRewardedVideoAvailable";
+NSString *const kIronSourceRewardedVideoUnavailable = @"ironSourceRewardedVideoUnavailable";
+NSString *const kIronSourceRewardedVideoAdRewarded = @"ironSourceRewardedVideoAdRewarded";
+NSString *const kIronSourceRewardedVideoClosedByError = @"ironSourceRewardedVideoClosedByError";
+NSString *const kIronSourceRewardedVideoClosedByUser = @"ironSourceRewardedVideoClosedByUser";
+NSString *const kIronSourceRewardedVideoDidStart = @"ironSourceRewardedVideoDidStart";
+NSString *const kIronSourceRewardedVideoDidOpen = @"ironSourceRewardedVideoDidOpen";
+NSString *const kIronSourceRewardedVideoAdStarted = @"ironSourceRewardedVideoAdStarted";
+NSString *const kIronSourceRewardedVideoAdEnded = @"ironSourceRewardedVideoAdEnded";
 
 RCT_EXPORT_MODULE()
 
@@ -10,6 +20,23 @@ RCT_EXPORT_MODULE()
 {
     return dispatch_get_main_queue();
 }
+
+- (NSArray<NSString *> *)supportedEvents {
+    return @[kIronSourceRewardedVideoAvailable,
+             kIronSourceRewardedVideoUnavailable,
+             kIronSourceRewardedVideoAdRewarded,
+             kIronSourceRewardedVideoClosedByError,
+             kIronSourceRewardedVideoClosedByUser,
+             kIronSourceRewardedVideoDidStart,
+             kIronSourceRewardedVideoDidOpen,
+             kIronSourceRewardedVideoAdStarted,
+             kIronSourceRewardedVideoAdEnded
+             ];
+}
+
+    /****************** 
+     * INITIALISATION *
+     ******************/
 
 RCT_EXPORT_METHOD(setConsent:(BOOL)consent)
 {
@@ -35,6 +62,10 @@ RCT_EXPORT_METHOD(initIronsourceSDK:(NSString *)appKey
     else
         RCTLogInfo(@"[IOS NATIVE IRONSOURCE] Integration Helper not activate");
 }
+
+    /**************** 
+     * REWAREDVIDEO *
+     ****************/
 
 RCT_EXPORT_METHOD(showRewardedVideo:(NSString*)placementName)
 {
@@ -71,6 +102,63 @@ RCT_EXPORT_METHOD(isRewardedVideoPlacementCapped:(NSString*)placementName : (RCT
         RCTLogInfo(@"isRewardedVideoCappedForPlacement, Error, %@", exception.reason);
         reject(@"isRewardedVideoCappedForPlacement, Error, %@", exception.reason, nil);
     }
+}
+
+- (void)didReceiveRewardForPlacement:(ISPlacementInfo*)placementInfo {
+    NSNumber * rewardAmount = [placementInfo rewardAmount];
+    NSString * rewardName = [placementInfo rewardName];
+    NSLog(@">>>>>>>>>>>> RewardedVideo %@ reward amount %@", rewardName, rewardAmount);
+    [self sendEventWithName:kIronSourceRewardedVideoAdRewarded body:@{
+                                                                      @"rewardName": rewardName,
+                                                                      @"rewardAmount": rewardAmount
+                                                                      }];
+}
+
+ - (void)rewardedVideoHasChangedAvailability:(BOOL)available {
+     if(available == YES) {
+         NSLog(@">>>>>>>>>>>> RewardedVideo available");
+         [self sendEventWithName:kIronSourceRewardedVideoAvailable body:nil];
+     } else {
+         NSLog(@">>>>>>>>>>>> RewardedVideo NOT available");
+         [self sendEventWithName:kIronSourceRewardedVideoUnavailable body:nil];
+     }
+ }
+
+- (void)didReceiveRewardForPlacement:(ISPlacementInfo*)placementInfo {
+    NSNumber * rewardAmount = [placementInfo rewardAmount];
+    NSString * rewardName = [placementInfo rewardName];
+    NSLog(@">>>>>>>>>>>> RewardedVideo %@ reward amount %@", rewardName, rewardAmount);
+    [self sendEventWithName:kIronSourceRewardedVideoAdRewarded body:@{
+                                                                      @"rewardName": rewardName,
+                                                                      @"rewardAmount": rewardAmount
+                                                                      }];
+}
+
+- (void)rewardedVideoDidFailToShowWithError:(NSError *)error {
+    NSLog(@">>>>>>>>>>>> RewardedVideo ad closed due to an error: %@!", error);
+    [self sendEventWithName:kIronSourceRewardedVideoClosedByError body:nil];
+}
+
+- (void)rewardedVideoDidOpen{
+    NSLog(@">>>>>>>>>>>> RewardedVideo opened!");
+    // @Deprecated kIronSourceRewardedVideoDidStart
+    [self sendEventWithName:kIronSourceRewardedVideoDidStart body:nil];
+    [self sendEventWithName:kIronSourceRewardedVideoDidOpen body:nil];
+}
+
+- (void)rewardedVideoDidClose {
+    NSLog(@">>>>>>>>>>>> RewardedVideo closed!");
+    [self sendEventWithName:kIronSourceRewardedVideoClosedByUser body:nil];
+}
+
+- (void)rewardedVideoDidStart {
+    NSLog(@">>>>>>>>>>>> RewardedVideo Ad Started!");
+    [self sendEventWithName:kIronSourceRewardedVideoAdStarted body:nil];
+}
+
+- (void)rewardedVideoDidEnd {
+    NSLog(@">>>>>>>>>>>> RewardedVideo Ad Ended!");
+    [self sendEventWithName:kIronSourceRewardedVideoAdEnded body:nil];
 }
 
 @end
