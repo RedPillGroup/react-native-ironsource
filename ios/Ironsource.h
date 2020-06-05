@@ -2,7 +2,8 @@
 
 #import "IronSource/IronSource.h"
 #import "React/RCTConvert.h"
+#import "RCTEventEmitter.h"
 
-@interface Ironsource : NSObject <RCTBridgeModule, ISRewardedVideoDelegate>
+@interface Ironsource : RCTEventEmitter <RCTBridgeModule, ISRewardedVideoDelegate>
 
 @end

@@ -124,16 +124,6 @@ RCT_EXPORT_METHOD(isRewardedVideoPlacementCapped:(NSString*)placementName : (RCT
      }
  }
 
-- (void)didReceiveRewardForPlacement:(ISPlacementInfo*)placementInfo {
-    NSNumber * rewardAmount = [placementInfo rewardAmount];
-    NSString * rewardName = [placementInfo rewardName];
-    NSLog(@">>>>>>>>>>>> RewardedVideo %@ reward amount %@", rewardName, rewardAmount);
-    [self sendEventWithName:kIronSourceRewardedVideoAdRewarded body:@{
-                                                                      @"rewardName": rewardName,
-                                                                      @"rewardAmount": rewardAmount
-                                                                      }];
-}
-
 - (void)rewardedVideoDidFailToShowWithError:(NSError *)error {
     NSLog(@">>>>>>>>>>>> RewardedVideo ad closed due to an error: %@!", error);
     [self sendEventWithName:kIronSourceRewardedVideoClosedByError body:nil];
