@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Platform, StyleSheet, Text, View, Button } from 'react-native';
 
-import Ironsource from 'react-native-ironsource';
+import Ironsource from '@redpill-paris/react-native-ironsource';
 
 const instructions = Platform.select({
   ios: `Press Cmd+R to reload,\nCmd+D or shake for dev menu`,

@@ -1417,6 +1417,11 @@
     wcwidth "^1.0.1"
     ws "^1.1.0"
 
+"@redpill-paris/react-native-ironsource@^1.0.5":
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/@redpill-paris/react-native-ironsource/-/react-native-ironsource-1.0.5.tgz#87f748b57853d2a57a033bd7ae6520626a34db04"
+  integrity sha512-uVaRcmQkQlMvu94z1TrKYzeel48/OtolGxnstRPhuZUnEZELH90b03tCuLkPQOTV4gjHydVC8uzjbDSlf2Igrg==
+
 "@sinonjs/commons@^1.7.0":
   version "1.8.0"
   resolved "https://registry.yarnpkg.com/@sinonjs/commons/-/commons-1.8.0.tgz#c8d68821a854c555bba172f3b06959a0039b236d"
@@ -5881,7 +5886,7 @@ react-native-gesture-handler@~1.6.0:
     prop-types "^15.7.2"
 
 react-native-ironsource@../../react-native-ironsource:
-  version "1.0.1"
+  version "1.0.3"
 
 react-native-reanimated@~1.7.0:
   version "1.7.1"
