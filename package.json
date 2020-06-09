@@ -2,7 +2,7 @@
   "name": "@redpill-paris/react-native-ironsource",
   "title": "React Native Ironsource",
   "version": "1.0.4",
-  "description": "TODO",
+  "description": "SDK api in react native for IronSource",
   "main": "index.js",
   "files": [
     "README.md",
