@@ -12,7 +12,7 @@ const eventHandlers = {
   ironSourceRewardedVideoClosedByError: new Map(),
   ironSourceRewardedVideoAdStarted: new Map(),
   ironSourceRewardedVideoAdEnded: new Map(),
-  ironSourceRewardedVideoAdRewarded:new Map()
+  ironSourceRewardedVideoAdRewarded: new Map()
 };
 
 const addEventListener = (type, handler) => {
