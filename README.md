@@ -8,7 +8,7 @@ Part of SDK implemented:
 ## Install
 
 ```
-  yarn add https://github.com/RedPillGroup/react-native-ironsource.git
+  yarn add @redpill-paris/react-native-ironsource
 ```
 
 ## Configuration
