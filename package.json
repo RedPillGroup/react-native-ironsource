@@ -22,7 +22,10 @@
   "keywords": [
     "react-native"
   ],
-  "author": "Itagiba ALIX <itagiba@redpill.paris>",
+  "author": {
+    "name": "Itagiba ALIX",
+    "username" : "<itagiba@redpill.paris>"
+  },
   "license": "MIT",
   "licenseFilename": "LICENSE",
   "peerDependencies": {

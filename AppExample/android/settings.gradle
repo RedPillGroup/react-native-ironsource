@@ -1,0 +1,5 @@
+rootProject.name = 'AppExample'
+include ':@redpill-paris_react-native-ironsource'
+project(':@redpill-paris_react-native-ironsource').projectDir = new File(rootProject.projectDir, '../node_modules/@redpill-paris/react-native-ironsource/android')
+apply from: file("../node_modules/@react-native-community/cli-platform-android/native_modules.gradle"); applyNativeModulesSettingsGradle(settings)
+include ':app'
