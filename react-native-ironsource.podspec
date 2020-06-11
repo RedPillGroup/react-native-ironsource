@@ -24,7 +24,6 @@ Pod::Spec.new do |s|
   s.dependency "React"
   s.dependency "IronSourceSDK","6.16.2.0"
 
-
   # ...
   # s.dependency "..."
 end
